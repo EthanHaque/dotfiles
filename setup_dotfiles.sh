@@ -3,7 +3,7 @@
 DOTFILES_REPO="git@github.com:EthanHaque/dotfiles.git"
 DOTFILES_DIR="$HOME/repos/dotfiles"
 NVIM_CONFIG_DIR="$HOME/.config/nvim"
-BACKUP_DIR="$HOME/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
+BACKUP_DIR="$HOME/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
 
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Cloning dotfiles repository into $DOTFILES_DIR..."
