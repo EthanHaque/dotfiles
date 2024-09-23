@@ -1,81 +1,78 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
-*i*) ;;
-*) return ;;
+    *i*) ;;
+    *) return ;;
 esac
 
-# Path to your oh-my-bash installation.
-export OSH="/home/ethan/.oh-my-bash"
+# Path to oh-my-bash installation
+export OSH="$HOME/.oh-my-bash"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
+# Set the theme for oh-my-bash
 OSH_THEME="90210"
 
-# To disable the uses of "sudo" by oh-my-bash, please set "false" to
-# this variable.  The default behavior for the empty value is "true".
+# Disable/enable sudo in oh-my-bash
 OMB_USE_SUDO=true
 
-# To enable/disable display of Python virtualenv and condaenv
+# Optionally enable/disable Python virtualenv display in the prompt
 # OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
-source "$OSH"/oh-my-bash.sh
+# Source oh-my-bash if available
+if [ -f "$OSH/oh-my-bash.sh" ]; then
+    source "$OSH/oh-my-bash.sh"
+fi
 
-# Source global definitions
+# Source global definitions if available
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# User specific environment
+# User-specific environment settings
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
+# Load user-specific aliases and functions from .bashrc.d if available
+if [ -d "$HOME/.bashrc.d" ]; then
+    for rc in "$HOME/.bashrc.d/"*; do
+        [ -f "$rc" ] && . "$rc"
     done
 fi
-unset rc
 
-export PATH=$HOME/.local/bin:$PATH
-
+# General useful aliases
 alias ll="ls -lA"
-
 alias ..="cd .."
 alias ...="cd ../.."
-alias ....="cd ../../.e"
-
+alias ....="cd ../../.."
 alias search="grep -rnw . -e"
-
 alias cls="clear"
 
-alias pycharm="/home/ethan/apps/pycharm-2023.3.3/bin/pycharm.sh"
-alias rustrover="/home/ethan/apps/RustRover-2024.2/bin/rustrover"
-alias intellij="/home/ethan/apps/ideaIU-2023.3.3/bin/idea.sh"
-alias goland="/home/ethan/apps/GoLand-2023.3.4/bin/goland.sh"
-alias dataspell="/home/ethan/apps/dataspell-2024.2.1/bin/dataspell"
+# Application-specific aliases
+APP_DIR="$HOME/apps"
+alias pycharm="$APP_DIR/pycharm-2023.3.3/bin/pycharm.sh"
+alias rustrover="$APP_DIR/RustRover-2024.2/bin/rustrover"
+alias intellij="$APP_DIR/ideaIU-2023.3.3/bin/idea.sh"
+alias goland="$APP_DIR/GoLand-2023.3.4/bin/goland.sh"
+alias dataspell="$APP_DIR/dataspell-2024.2.1/bin/dataspell"
 
+# Set shell options and editor
 set -o vi
-EDITOR=nvim
+export EDITOR=nvim
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("/usr/bin/conda" "shell.bash" "hook" 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+# Conda environment setup, only if conda is installed
+if command -v conda &> /dev/null; then
+    __conda_setup="$("$(command -v conda)" "shell.bash" "hook" 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    elif [ -f "/usr/etc/profile.d/conda.sh" ]; then
         . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
 
-. "$HOME/.cargo/env"
+# Source Rust environment, only if cargo is installed
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
