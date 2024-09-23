@@ -47,4 +47,4 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", {})
 
 -- Open Netrw file explorer with <leader>pv
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>", {})
+vim.keymap.set("n", "<leader>e", ":Ex<CR>", {})
