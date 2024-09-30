@@ -1,7 +1,7 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
-    *i*) ;;
-    *) return ;;
+*i*) ;;
+*) return ;;
 esac
 
 # Path to oh-my-bash installation
@@ -14,7 +14,7 @@ OSH_THEME="90210"
 OMB_USE_SUDO=true
 
 # Optionally enable/disable Python virtualenv display in the prompt
-# OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+# OMB_PROMPT_SHOW_PYTHON_VENV=true # enable
 # OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
 
 # Source oh-my-bash if available
@@ -61,7 +61,7 @@ set -o vi
 export EDITOR=nvim
 
 # Conda environment setup, only if conda is installed
-if command -v conda &> /dev/null; then
+if command -v conda &>/dev/null; then
     __conda_setup="$("$(command -v conda)" "shell.bash" "hook" 2>/dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -75,4 +75,3 @@ unset __conda_setup
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
-

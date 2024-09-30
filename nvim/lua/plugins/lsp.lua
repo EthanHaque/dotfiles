@@ -1,15 +1,3 @@
---
--- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
--- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
--- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
--- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
--- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
--- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
---
--- File: plugins/lsp.lua
--- Description: LSP setup and config
--- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 return { -- LSP
   {
     -- Mason
